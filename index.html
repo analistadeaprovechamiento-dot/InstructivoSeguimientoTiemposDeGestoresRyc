@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Instrucciones: Gestión de Novedades y Seguimiento de Visitas</title>
+    <style>
+        /* Paleta de Colores: 606C38 (Verde Oscuro), 283618 (Verde Muy Oscuro), FEFAE0 (Crema/Fondo), DDA15E (Naranja/Oro), BC6C25 (Marrón/Énfasis) */
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF; /* Fondo Blanco para look limpio */
+            color: #283618; /* Texto principal Verde Muy Oscuro */
+            line-height: 1.6;
+        }
+        
+        .header {
+            background-color: #606C38; /* Encabezado Verde Oscuro */
+            color: #FEFAE0;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid #BC6C25; /* Borde de Énfasis Marrón */
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .section {
+            background-color: #FFFFFF; /* Fondo de sección blanco para contraste */
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #DDA15E; /* Énfasis Lateral Naranja */
+        }
+
+        .section-title {
+            color: #BC6C25; /* Título de sección Marrón */
+            border-bottom: 2px solid #DDA15E;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.8em;
+            cursor: pointer; /* Indica que es interactivo */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title:hover {
+            color: #DDA15E;
+        }
+
+        .toggle-arrow {
+            transition: transform 0.3s;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .section-content {
+            padding-top: 20px;
+            transition: all 0.3s ease-out;
+            overflow: hidden;
+        }
+
+        .step-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .step-list li {
+            margin-bottom: 20px;
+            padding-left: 45px;
+            position: relative;
+        }
+
+        .step-list li strong {
+            color: #283618;
+            font-weight: 600;
+        }
+
+        .step-list li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #DDA15E; /* Número de paso Naranja */
+            color: #283618;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-block {
+            background-color: #283618; /* Fondo del código Verde Muy Oscuro */
+            color: #FEFAE0; /* Texto del código Crema */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre;
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin-top: 10px;
+            /* Estilo para el código dentro del <pre> */
+        }
+
+        .code-explanation {
+            background-color: #FEFAE0; /* Mantiene un sutil contraste */
+            color: #283618;
+            border: 1px solid #606C38;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .note {
+            background-color: #FEFAE0; /* Mantiene un sutil contraste */
+            border-left: 4px solid #606C38; /* Borde de nota Verde Oscuro */
+            padding: 15px;
+            margin: 15px 0;
+            color: #283618;
+            border-radius: 4px;
+        }
+
+        /* Estilos para los botones de código/explicación */
+        .code-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .code-button {
+            background-color: #BC6C25; /* Marrón */
+            color: #FEFAE0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .code-button:hover {
+            background-color: #DDA15E; /* Naranja/Oro */
+            color: #283618;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 10px; /* Hacemos el padding más pequeño */
+            margin-top: 20px; /* Reducimos el margen superior */
+            border-top: 1px solid #DDA15E;
+            font-size: 0.75em; /* Hacemos la fuente más pequeña */
+            color: #6b7280; /* Color gris */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛠️ Manual de Instrucciones: Seguimiento y Novedades</h1>
+        <p>Proceso estandarizado para la gestión de novedades en visitas y seguimiento diario.</p>
+    </div>
+
+    <div class="container">
+        
+        <!-- Fase 1 -->
+        <div class="section" id="fase1">
+            <h2 class="section-title" onclick="toggleSection('fase1')">
+                ⏱️ Fase 1: Obtener Hora de Creación (AI/AJ)
+                <span class="toggle-arrow">▼</span>
+            </h2>
+            <div class="section-content">
+                <p>Este procedimiento utiliza Google Apps Script para extraer la fecha y hora de creación de los archivos vinculados en la columna de enlaces.</p>
+                
+                <!-- Botones para mostrar código y explicación -->
+                <div class="code-buttons">
+                    <button class="code-button" onclick="toggleCode('apps-code-block', this)">Mostrar/Ocultar Código Apps Script</button>
+                    <button class="code-button" onclick="toggleCode('code-explanation', this)">Mostrar/Ocultar Explicación del Código</button>
+                </div>
+
+                <!-- Bloque del Código (Inicialmente Oculto) -->
+                <div id="apps-code-block" style="display: none;">
+                    <div class="code-block">
+                        /****************************************************<br>
+                        * MENÚ<br>
+                        ****************************************************/<br>
+                        function onOpen() {<br>
+                        &nbsp;&nbsp;SpreadsheetApp.getUi()<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;.createMenu("⏱ Metadata Archivos")<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;.addItem("Procesar fechas (AI/AJ)", "procesarFechasArchivos")<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;.addToUi();<br>
+                        }<br>
+                        <br>
+                        /****************************************************<br>
+                        * FUNCIÓN PRINCIPAL<br>
+                        ****************************************************/<br>
+                        function procesarFechasArchivos() {<br>
+                        &nbsp;&nbsp;const hoja = SpreadsheetApp.getActive().getSheetByName("PLANTILLA");<br>
+                        &nbsp;&nbsp;if (!hoja) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;SpreadsheetApp.getUi().alert("❌ No existe la hoja PLANTILLA");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return;<br>
+                        &nbsp;&nbsp;}<br>
+                        <br>
+                        &nbsp;&nbsp;const ultimaFila = hoja.getLastRow();<br>
+                        &nbsp;&nbsp;if (ultimaFila < 2) return;<br>
+                        <br>
+                        &nbsp;&nbsp;const data = hoja.getRange(2, 1, ultimaFila - 1, hoja.getLastColumn()).getValues();<br>
+                        <br>
+                        &nbsp;&nbsp;const COL_ENLACE = 30; // AE → columna 31 → índice 30 (0-based)<br>
+                        &nbsp;&nbsp;const COL_FECHA = 34; // AI → columna 35 → índice 34<br>
+                        &nbsp;&nbsp;const COL_HORA = 35; // AJ → columna 36 → índice 35<br>
+                        <br>
+                        &nbsp;&nbsp;const salida = [];<br>
+                        <br>
+                        &nbsp;&nbsp;for (let i = 0; i < data.length; i++) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;let enlace = data[i][COL_ENLACE];<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;// Si no hay enlace o ya tiene datos → saltar<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;if (!enlace || (data[i][COL_FECHA] && data[i][COL_HORA])) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;salida.push([data[i][COL_FECHA], data[i][COL_HORA]]);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;try {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Extraer FILE ID de cualquier tipo de URL<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const fileId = extraerFileId(enlace);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!fileId) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;salida.push(["ID no válido", ""]);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const file = DriveApp.getFileById(fileId);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const fechaCreacion = file.getDateCreated();<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const fecha = new Date(fechaCreacion);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const fechaStr = Utilities.formatDate(fecha, "GMT-5", "yyyy-MM-dd");<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const horaStr = Utilities.formatDate(fecha, "GMT-5", "HH:mm:ss");<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;salida.push([fechaStr, horaStr]);<br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;} catch (e) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;salida.push(["Error", ""]);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;}<br>
+                        <br>
+                        &nbsp;&nbsp;// Escribe AI (fecha) y AJ (hora)<br>
+                        &nbsp;&nbsp;hoja.getRange(2, COL_FECHA + 1, salida.length, 2).setValues(salida);<br>
+                        }<br>
+                        <br>
+                        /****************************************************<br>
+                        * EXTRAER ID DEL ENLACE<br>
+                        ****************************************************/<br>
+                        function extraerFileId(url) {<br>
+                        &nbsp;&nbsp;if (url) return null;<br>
+                        <br>
+                        &nbsp;&nbsp;const regex =<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;/[-\w]{25,}/; // Extrae cualquier ID válido<br>
+                        <br>
+                        &nbsp;&nbsp;const match = url.match(regex);<br>
+                        &nbsp;&nbsp;return match ? match[0] : null;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Explicación del Código (Inicialmente Oculto) -->
+                <div id="code-explanation" style="display: none;" class="code-explanation">
+                    <h3 style="font-size: 1.3em; color: #BC6C25; margin-bottom: 10px;">Explicación Paso a Paso del Apps Script</h3>
+                    <ol style="list-style: decimal; padding-left: 20px;">
+                        <li style="margin-bottom: 8px;">**`onOpen()` (Menú):** Esta función se ejecuta automáticamente al abrir la hoja de cálculo y crea el menú <strong>"⏱ Metadata Archivos"</strong> con la opción para iniciar el proceso.</li>
+                        <li style="margin-bottom: 8px;">**`procesarFechasArchivos()` (Principal):**
+                            <ul>
+                                <li>Busca la hoja <strong>"PLANTILLA"</strong>.</li>
+                                <li>Define las constantes de las columnas: <strong>COL\_ENLACE (30/AE)</strong>, <strong>COL\_FECHA (34/AI)</strong> y <strong>COL\_HORA (35/AJ)</strong>.</li>
+                                <li>Itera sobre los datos, revisando si hay un enlace en la columna AE y si las columnas AI/AJ están vacías.</li>
+                                <li>Si están vacías, llama a `extraerFileId()` y luego usa <strong>`DriveApp.getFileById()`</strong> para obtener el archivo.</li>
+                                <li>Extrae la fecha de creación del archivo (**`file.getDateCreated()`**) y la formatea a la zona horaria GMT-5.</li>
+                                <li>Escribe la fecha y hora formateadas en las columnas <strong>AI</strong> y <strong>AJ</strong>, respectivamente.</li>
+                            </ul>
+                        </li>
+                        <li style="margin-bottom: 8px;">**`extraerFileId(url)`:** Esta función auxiliar utiliza una expresión regular para aislar y devolver el ID único del archivo de Google Drive a partir de la URL completa.</li>
+                    </ol>
+                </div>
+
+
+                <ul class="step-list">
+                    <li data-step="1"><strong>Preparación de la Base:</strong> Haz una copia de la base <strong>"GESTIÓN DE NOVEDADES VISITAS"</strong> y <strong>elimina los días</strong> que no sean necesarios para el análisis actual.</li>
+                    <li data-step="2"><strong>Acceso a Apps Script:</strong> Ve al menú <strong>Extensiones</strong> y selecciona <strong>Apps Script</strong>.</li>
+                    <li data-step="3"><strong>Limpieza del Código:</strong> <strong>Borra</strong> completamente el código que se encuentre en el editor.</li>
+                    <li data-step="4"><strong>Implementación del Código:</strong> <strong>Pega</strong> el código completo y haz clic en el icono del <strong>disquete (Guardar proyecto)</strong>.</li>
+                    <li data-step="5"><strong>Actualizar Hoja:</strong> Regresa a la copia de la base de datos y presiona <strong>F5</strong> para recargar y refrescar la hoja.</li>
+                    <li data-step="6"><strong>Ejecutar el Proceso:</strong> Aparecerá un nuevo menú llamado <strong>"⏱ Metadata Archivos"</strong> en la parte superior. Haz clic en él y selecciona <strong>"Procesar fechas (AI/AJ)"</strong>. (La primera vez requerirá permisos).</li>
+                    <li data-step="7"><strong>Validación de Fechas:</strong> En la columna <strong>AK</strong>, agrega una nueva columna llamada <strong>VALIDACIÓN</strong> y usa la fórmula: <code style="background: #eee; padding: 2px 5px; border-radius: 3px;">=AI2=AG2</code> para verificar si la fecha extraída es igual a la fecha de la visita.</li>
+                    <li data-step="8"><strong>Filtrado de Datos:</strong> <strong>Filtra</strong> la columna <strong>VALIDACIÓN</strong> para mostrar únicamente los valores <strong>VERDADERO</strong> (TRUE).</li>
+                    <li data-step="9"><strong>Transferencia de Datos a "COORDENADAS":</strong> En la hoja <strong>COORDENADAS</strong>:
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li>Ve al final de la columna <strong>E</strong> y pega los códigos <strong>BIOC</strong> (Columna O) que resultaron del filtro anterior.</li>
+                            <li>Pega las <strong>Horas</strong> (Columna AJ) en la columna <strong>F</strong>.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px dashed #DDA15E; margin: 30px 0;">
+        
+        <!-- Fase 2 -->
+        <div class="section" id="fase2">
+            <h2 class="section-title" onclick="toggleSection('fase2')">
+                🗓️ Fase 2: Creación del Día de Seguimiento
+                <span class="toggle-arrow">▼</span>
+            </h2>
+            <div class="section-content" style="display: none;">
+                <p>Pasos para configurar la hoja de seguimiento individual de cada inspector.</p>
+                
+                <ul class="step-list">
+                    <li data-step="1"><strong>Seleccionar Hoja de Inspector:</strong> En la hoja de cálculo de cada inspector, crea la estructura para el nuevo día de revisión.</li>
+                    <li data-step="2"><strong>Copiar Estructura:</strong> <strong>Copia y pega</strong> las primeras <strong>5 filas</strong> del día inmediatamente anterior.</li>
+                    <li data-step="3"><strong>Actualizar Fecha:</strong> Da <strong>doble clic</strong> en la primera fila del nuevo día para <strong>actualizar la fecha</strong> a la fecha actual de revisión.</li>
+                    <li data-step="4"><strong>Limpiar Campos:</strong> <strong>Suprime</strong> la información en las columnas <strong>A</strong>, <strong>H</strong>, <strong>K</strong> y <strong>L</strong> del nuevo bloque.</li>
+                    <li data-step="5"><strong>Filtrar Base Original:</strong> Ve a la base original de visitas y aplica dos filtros:
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li>Filtra por el <strong>Día</strong> que vas a revisar (Columna N).</li>
+                            <li>Filtra por el <strong>Inspector</strong> (Columna M).</li>
+                        </ul>
+                    </li>
+                    <li data-step="6"><strong>Organizar la Hora:</strong> En la columna de <strong>Hora (AH)</strong>, aplica un filtro para organizar los datos de <strong>Menor a Mayor</strong>.</li>
+                    <li data-step="7"><strong>Pegar BIOC y Datos:</strong>
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li><strong>Copia</strong> los códigos <strong>BIOC</strong> (Columna O) y <strong>Pégalos</strong> en el día que estás creando en la hoja del inspector.</li>
+                            <li><strong>Copia</strong> desde el <strong>segundo BIOC</strong> las columnas <strong>B</strong> hasta la <strong>J</strong> y <strong>Pégalas</strong> hasta el final de los BIOC.</li>
+                        </ul>
+                    </li>
+                    <li data-step="8"><strong>Formato Unificado:</strong> Asegúrate de que <strong>todo</strong> tenga la <strong>misma tipografía</strong> y los <strong>bordes</strong> correctos.</li>
+                    <li data-step="9"><strong>Cálculo y Llenado de Resumen (M y N):</strong> Completa la información del resumen del día:
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li><strong>Visitas Asignadas:</strong> Consulta en la base <strong>IMPRESIÓN VISITAS</strong>.</li>
+                            <li><strong>Visitas Realizadas:</strong> Cantidad de códigos <strong>BIOC</strong> encontrados para ese día.</li>
+                            <li><strong>Visitas Devueltas:</strong> Resta de (Visitas Asignadas - Visitas Realizadas).</li>
+                            <li><strong>Efectividad:</strong> Porcentaje que resulta de (Visitas Realizadas / Visitas Asignadas).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px dashed #DDA15E; margin: 30px 0;">
+
+        <!-- Fase 3 -->
+        <div class="section" id="fase3">
+            <h2 class="section-title" onclick="toggleSection('fase3')">
+                🔍 Fase 3: Realizar el Seguimiento y Auditoría
+                <span class="toggle-arrow">▼</span>
+            </h2>
+            <div class="section-content" style="display: none;">
+                <p>Proceso de auditoría y documentación de las visitas del inspector.</p>
+                
+                <ul class="step-list">
+                    <li data-step="1"><strong>Recopilar Reportes:</strong> Localiza inmediatamente <strong>todos los reportes</strong> publicados en los chats <strong>"REPORTE INSPECTORES"</strong> y el grupo de WhatsApp <strong>"SURVEY 123"</strong>.</li>
+                    <li data-step="2"><strong>Relacionar Soportes:</strong> Relaciona estos reportes en la columna <strong>Soportes (Columna L)</strong>, asegurándote de que coincidan con el <strong>rango horario</strong> de las visitas.</li>
+                    <li data-step="3"><strong>Verificar Formato:</strong> Confirma que el texto en la columna <strong>Soportes</strong> mantenga el <strong>mismo formato</strong> del día anterior (típicamente <strong>letras grises</strong>).</li>
+                    <li data-step="4"><strong>Identificar Puntos de Auditoría:</strong> Identifica cualquier celda en la columna <strong>F</strong> o <strong>G</strong> que esté <strong>subrayada en amarillo</strong>. Estas son las novedades o brechas de tiempo que <strong>debes auditar</strong>.
+                        <div class="note">⚠️ **Excepción:** El único intervalo de tiempo amarillo permitido sin justificación es la <strong>hora de almuerzo</strong> (una hora).</div>
+                    </li>
+                    <li data-step="5"><strong>Complementar con Google Maps:</strong> Utiliza el <strong>enlace de Google Maps</strong> para calcular el <strong>tiempo real de traslado</strong> (en minutos) entre la visita anterior y la actual.
+                        <p>Agrega la siguiente frase como soporte: <strong>"Se evidencia que hay X minutos de la visita anterior a la visita actual"</strong>.</p>
+                    </li>
+                    <li data-step="6"><strong>Redactar Observación:</strong> En la columna <strong>Observación</strong>, redacta un comentario indicando claramente si:
+                        <ul style="list-style: disc; padding-left: 20px;">
+                            <li>Hay una <strong>Novedad</strong> (ej: "Hay una Novedad: el tiempo no está justificado").</li>
+                            <li>El tiempo <strong>Está Justificado</strong> (ej: "El tiempo está Justificado por reporte de almuerzo").</li>
+                        </ul>
+                        <div class="note">✅ <strong>Importante:</strong> Usar las palabras <strong>NOVEDAD</strong> o <strong>ESTÁ JUSTIFICADO</strong> activa un <strong>formato condicional</strong> que clasifica y da color (<strong>Verde</strong> o <strong>Rojo</strong>) a la fila automáticamente.</div>
+                    </li>
+                    <li data-step="7"><strong>Cerrar el Día:</strong> Una vez finalizada la revisión y auditoría del día, marca en la esquina inferior derecha el texto <strong>"OK RVDO"</strong>.</li>
+                    <li data-step="8"><strong>Transferir Novedades:</strong> Dirígete al <strong>Panel de Coordinación</strong> y haz clic en el <strong>Paso 4</strong>. Esto automatizará la transferencia de todas las novedades a la <strong>Hoja de Novedades</strong>.</li>
+                    <li data-step="9"><strong>Clasificación Final:</strong> En la Hoja de Novedades, lo único restante es <strong>clasificar el tipo de novedad</strong> agregada.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px dashed #DDA15E; margin: 30px 0;">
+
+        <!-- Fase 4: Código Base del Panel de Coordinación -->
+        <div class="section" id="fase4">
+            <h2 class="section-title" onclick="toggleSection('fase4')">
+                ⚙️ Código Base: Panel de Coordinación (Recurso de Respaldo)
+                <span class="toggle-arrow">▼</span>
+            </h2>
+            <div class="section-content" style="display: none;">
+                <p>Este código Apps Script proporciona la funcionalidad central del **"Panel de Coordinación"** con sus 4 pasos. Se entrega como **recurso de respaldo** en caso de que el script original se dañe o se elimine.</p>
+                
+                <!-- Botones para mostrar código y explicación del Panel -->
+                <div class="code-buttons">
+                    <button class="code-button" onclick="toggleCode('base-code-block', this)">Mostrar/Ocultar CÓDIGO BASE</button>
+                    <button class="code-button" onclick="toggleCode('base-code-explanation', this)">Mostrar/Ocultar Explicación DETALLADA</button>
+                </div>
+
+                <!-- Bloque del Código Base (Inicialmente Oculto) -->
+                <div id="base-code-block" style="display: none;">
+                    <div class="code-block">
+/**<br>
+ * Crea un menú personalizado al abrir la Hoja de Cálculo.<br>
+ */<br>
+function onOpen() {<br>
+  try {<br>
+    const ui = SpreadsheetApp.getUi();<br>
+    // Menú existente con el nuevo elemento de Novedades añadido<br>
+    ui.createMenu("🧭 Panel de Coordinación")<br>
+      .addItem("1️⃣ Traer valores desde Plantilla", "traerValoresDesdePlantilla")<br>
+      .addItem("2️⃣ Extraer coordenadas desde enlaces", "extraerCoordenadasDesdeEnlaces")<br>
+      .addItem("3️⃣ Generar enlaces de Google Maps", "generarEnlacesGoogleMaps")<br>
+      .addSeparator() // Separador para diferenciar la nueva funcionalidad<br>
+      .addItem("4️⃣ 🔴 Buscar Novedades (K='novedad')", "procesarNovedades") // Nuevo item de menú<br>
+      .addToUi();<br>
+  } catch (e) {<br>
+    Logger.log("Error al crear menú: " + e.message);<br>
+  }<br>
+}<br>
+<br>
+// ------------------------------------------------------<br>
+// PASO 1: TRAER VALORES DESDE PLANTILLA<br>
+// ------------------------------------------------------<br>
+function traerValoresDesdePlantilla() {<br>
+  const UI = SpreadsheetApp.getUi();<br>
+  const NOMBRE_HOJA_COORD = "CORDENADAS";<br>
+  const URL_PLANTILLA = "https://docs.google.com/spreadsheets/d/1HyBS8p-fhh4c8yvoeBLX4Tc1gW7fdWsRrf-4EurwydY/edit";<br>
+  const NOMBRE_HOJA_PLANTILLA = "PLANTILLA";<br>
+  <br>
+  try {<br>
+    const ss = SpreadsheetApp.getActiveSpreadsheet();<br>
+    const hojaCoord = ss.getSheetByName(NOMBRE_HOJA_COORD);<br>
+<br>
+    if (!hojaCoord) {<br>
+      UI.alert(`⚠️ Error Crítico: No se encontró la hoja local '${NOMBRE_HOJA_COORD}'. Asegúrate de que el nombre sea exacto.`);<br>
+      return;<br>
+    }<br>
+<br>
+    const plantillaSS = SpreadsheetApp.openByUrl(URL_PLANTILLA);<br>
+    const hojaPlantilla = plantillaSS.getSheetByName(NOMBRE_HOJA_PLANTILLA);<br>
+<br>
+    if (!hojaPlantilla) {<br>
+        UI.alert(`⚠️ Error Crítico: No se encontró la hoja remota '${NOMBRE_HOJA_PLANTILLA}'.`);<br>
+      return;<br>
+    }<br>
+    <br>
+    const ultimaFilaCoord = hojaCoord.getLastRow();<br>
+    if (ultimaFilaCoord < 2) {<br>
+      UI.alert("ℹ️ La hoja CORDENADAS está vacía o solo tiene encabezados.");<br>
+      return;<br>
+    }<br>
+    const datosCoord = hojaCoord.getRange(2, 1, ultimaFilaCoord - 1, 1).getValues();<br>
+<br>
+    const ultimaFilaPlantilla = hojaPlantilla.getLastRow();<br>
+    if (ultimaFilaPlantilla < 2) {<br>
+      UI.alert("ℹ️ La hoja PLANTILLA remota está vacía o solo tiene encabezados.");<br>
+      return;<br>
+    }<br>
+    const datosPlantilla = hojaPlantilla.getRange(2, 15, ultimaFilaPlantilla - 1, 18).getValues();<br>
+<br>
+    const resultados = [];<br>
+    let contadorCoincidencias = 0;<br>
+<br>
+    for (const fila of datosCoord) {<br>
+      const codigo = fila[0] ? String(fila[0]).trim() : "";<br>
+      <br>
+      if (!codigo) {<br>
+        resultados.push([""]);<br>
+        continue;<br>
+      }<br>
+<br>
+      const coincidencia = datosPlantilla.find(r => <br>
+        String(r[0]).trim() === codigo && r[17] !== ""<br>
+      );<br>
+<br>
+      if (coincidencia) {<br>
+        resultados.push([coincidencia[17]]);<br>
+        contadorCoincidencias++;<br>
+      } else {<br>
+        resultados.push([""]);<br>
+      }<br>
+    }<br>
+<br>
+    hojaCoord.getRange(2, 2, resultados.length, 1).setValues(resultados);<br>
+    UI.alert(`✅ Datos de PLANTILLA actualizados en columna B de CORDENADAS. ${contadorCoincidencias} valores encontrados.`);<br>
+    <br>
+  } catch (err) {<br>
+    const mensajeError = err.message.includes("You do not have permission") <br>
+        ? "Error de Permisos: No tiene acceso al archivo de Plantilla. Verifique los permisos de compartido." <br>
+        : err.message;<br>
+        <br>
+    UI.alert("⚠️ Error al traer valores: " + mensajeError);<br>
+    Logger.log("Error detallado en Paso 1: " + err.stack);<br>
+  }<br>
+}<br>
+<br>
+// ------------------------------------------------------<br>
+// PASO 2: EXTRAER COORDENADAS DESDE ENLACES<br>
+// ------------------------------------------------------<br>
+function extraerCoordenadasDesdeEnlaces() {<br>
+  const UI = SpreadsheetApp.getUi();<br>
+  const NOMBRE_HOJA_COORD = "CORDENADAS";<br>
+<br>
+  try {<br>
+    const hojaCoord = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(NOMBRE_HOJA_COORD);<br>
+    if (!hojaCoord) {<br>
+      UI.alert(`⚠️ Error Crítico: No se encontró la hoja local '${NOMBRE_HOJA_COORD}'. Asegúrate de que el nombre sea exacto.`);<br>
+      return;<br>
+    }<br>
+<br>
+    const ultimaFila = hojaCoord.getLastRow();<br>
+    if (ultimaFila < 2) {<br>
+      UI.alert("ℹ️ La hoja CORDENADAS está vacía o solo tiene encabezados.");<br>
+      return;<br>
+    }<br>
+<br>
+    const enlaces = hojaCoord.getRange(2, 2, ultimaFila - 1, 1).getValues();<br>
+    const resultados = [];<br>
+<br>
+    const regex = /(?:[?q=]|[@/d/])?\s*(-?\d+\.\d+)[+, ]+(-?\d+\.\d+)/;<br>
+<br>
+    for (const fila of enlaces) {<br>
+      const enlace = fila[0] ? String(fila[0]).trim() : "";<br>
+      <br>
+      if (!enlace) {<br>
+        resultados.push([""]);<br>
+        continue;<br>
+      }<br>
+<br>
+      const match = enlace.match(regex);<br>
+      if (match) {<br>
+        const lat = parseFloat(match[1]);<br>
+        const lon = parseFloat(match[2]);<br>
+        if (!isNaN(lat) && !isNaN(lon)) {<br>
+            resultados.push([`${lat.toFixed(6)},${lon.toFixed(6)}`]);<br>
+        } else {<br>
+          resultados.push([""]);<br>
+        }<br>
+      } else {<br>
+        resultados.push([""]);<br>
+      }<br>
+    }<br>
+<br>
+    hojaCoord.getRange(2, 3, resultados.length, 1).setValues(resultados);<br>
+    UI.alert("✅ Coordenadas extraídas correctamente (columna C).");<br>
+  } catch (err) {<br>
+    UI.alert("⚠️ Error al extraer coordenadas: " + err.message);<br>
+    Logger.log("Error detallado en Paso 2: " + err.stack);<br>
+  }<br>
+}<br>
+<br>
+// ------------------------------------------------------<br>
+// PASO 3: GENERAR ENLACES DE GOOGLE MAPS<br>
+// ------------------------------------------------------<br>
+function generarEnlacesGoogleMaps() {<br>
+  const UI = SpreadsheetApp.getUi();<br>
+  const ss = SpreadsheetApp.getActiveSpreadsheet();<br>
+  const hojas = ss.getSheets();<br>
+  <br>
+  const HOJAS_OBJETIVO = ["JUAN", "GERMAN", "FRANQUI", "SANTIAGO"]; <br>
+  <br>
+  const COLOR_OBJETIVO = "#fff0db"; <br>
+  const COLUMNA_COORDENADAS = 3; <br>
+  const COLUMNA_COLOR = 8; <br>
+  const COLUMNA_SALIDA = 8; <br>
+<br>
+  try {<br>
+    let contadorHojasAfectadas = 0;<br>
+<br>
+    hojas.forEach(hoja => {<br>
+      const nombre = hoja.getName().toUpperCase(); <br>
+      <br>
+      if (!HOJAS_OBJETIVO.includes(nombre)) return;<br>
+<br>
+      const ultimaFila = hoja.getLastRow();<br>
+      if (ultimaFila < 3) return; <br>
+<br>
+      const ANCHO_RANGO = COLUMNA_COLOR - COLUMNA_COORDENADAS + 1; <br>
+      const rangoDatos = hoja.getRange(2, COLUMNA_COORDENADAS, ultimaFila - 1, ANCHO_RANGO); <br>
+      <br>
+      const valores = rangoDatos.getValues();<br>
+      const colores = rangoDatos.getBackgrounds();<br>
+      const resultados = [];<br>
+      <br>
+      const COLOR_INDEX = ANCHO_RANGO - 1; <br>
+<br>
+      for (let i = 1; i < valores.length; i++) {<br>
+        const coordAnterior = valores[i - 1][0] ? String(valores[i - 1][0]).trim() : "";<br>
+        const coordActual = valores[i][0] ? String(valores[i][0]).trim() : "";<br>
+        
+        const colorCelda = colores[i][COLOR_INDEX]; <br>
+<br>
+        if (colorCelda.toLowerCase() === COLOR_OBJETIVO && coordAnterior && coordActual) {<br>
+          
+          const url = `https://www.google.com/maps/dir/?api=1&origin=${coordAnterior}&destination=${coordActual}`;<br>
+          
+          resultados.push([`=HYPERLINK("${url}"; "Ver Ruta en Maps")`]);<br>
+        } else {<br>
+          resultados.push([""]);<br>
+        }<br>
+      }<br>
+      <br>
+      if (resultados.length > 0) {<br>
+        hoja.getRange(3, COLUMNA_SALIDA, resultados.length, 1).setValues(resultados);<br>
+        contadorHojasAfectadas++;<br>
+      }<br>
+    });<br>
+<br>
+    UI.alert(`✅ Enlaces de Google Maps (Rutas) generados. Se actualizaron ${contadorHojasAfectadas} hojas de la lista objetivo.`);<br>
+  } catch (err) {<br>
+    UI.alert("⚠️ Error al generar enlaces: " + err.message);<br>
+    Logger.log("Error detallado en Paso 3 (Filtro de Hojas): " + err.stack);<br>
+  }<br>
+}<br>
+<br>
+// ------------------------------------------------------<br>
+// PASO 4: PROCESAR NOVEDADES (Columna E contiene valor de K)<br>
+// ------------------------------------------------------<br>
+<br>
+function procesarNovedades() {<br>
+  const libro = SpreadsheetApp.getActiveSpreadsheet();<br>
+  const hojasOrigen = ["FRANQUI", "JUAN", "GERMAN"];<br>
+  const NOMBRE_HOJA_DESTINO = "NOVEDADES";<br>
+  const hojaDestino = libro.getSheetByName(NOMBRE_HOJA_DESTINO);<br>
+  const ui = SpreadsheetApp.getUi();<br>
+<br>
+  const MAPA_APELLIDOS = {<br>
+    "FRANQUI": "FRANQUI PARRA",<br>
+    "JUAN": "JUAN ALAPE",<br>
+    "GERMAN": "GERMAN CAMACHO"<br>
+  };<br>
+<br>
+  if (!hojaDestino) {<br>
+    ui.alert("Error", `La hoja '${NOMBRE_HOJA_DESTINO}' no se encontró. Asegúrate de que el nombre sea correcto.`, ui.ButtonSet.OK);<br>
+    return;<br>
+  }<br>
+  <br>
+  let filasRegistradas = 0; <br>
+  const urlBase = libro.getUrl();<br>
+  <br>
+  // LÓGICA PARA DETERMINAR LA FILA DE INICIO (Busca última fila con contenido en Columna D)<br>
+  const columnaDeReferencia = 4; // Columna D<br>
+  const datosColumnaD = hojaDestino.getRange(1, columnaDeReferencia, hojaDestino.getMaxRows(), 1).getValues();<br>
+  <br>
+  let ultimaFilaReal = 0;<br>
+  for (let i = datosColumnaD.length - 1; i >= 0; i--) {<br>
+    if (datosColumnaD[i][0] !== "") {<br>
+      ultimaFilaReal = i + 1;<br>
+      break;<br>
+    }<br>
+  }<br>
+<br>
+  let filaInicioEscritura = ultimaFilaReal + 1;<br>
+  if (filaInicioEscritura <= 1) { <br>
+      filaInicioEscritura = 2; <br>
+  }<br>
+<br>
+  // LECTURA POR LOTES PARA DUPLICADOS (Columna F)<br>
+  let valoresExistentes = new Set();<br>
+  if (ultimaFilaReal >= 2) { <br>
+    const rangoF = hojaDestino.getRange(2, 6, ultimaFilaReal - 1, 1).getValues(); <br>
+    rangoF.forEach(fila => {<br>
+      if (fila[0]) {<br>
+        valoresExistentes.add(String(fila[0]).trim());<br>
+      }<br>
+    });<br>
+  }<br>
+<br>
+  const datosParaEscribir = [];<br>
+<br>
+  // Iterar sobre cada hoja de origen<br>
+  for (const nombreHoja of hojasOrigen) {<br>
+    const hojaOrigen = libro.getSheetByName(nombreHoja);<br>
+    <br>
+    if (!hojaOrigen) {<br>
+      Logger.log(`Advertencia: La hoja '${nombreHoja}' no se encontró y fue omitida.`);<br>
+      continue;<br>
+    }<br>
+    <br>
+    const nombreCompleto = MAPA_APELLIDOS[nombreHoja] || nombreHoja;<br>
+    const ultimaFila = hojaOrigen.getLastRow();<br>
+    if (ultimaFila < 1) continue;<br>
+    <br>
+    const rangoOrigen = hojaOrigen.getRange(1, 1, ultimaFila, 11); // Rango A:K<br>
+    const datos = rangoOrigen.getValues();<br>
+    <br>
+    const INDICE_COLUMNA_A = 0; <br>
+    const INDICE_COLUMNA_K = 10; // Columna K es el índice 10<br>
+    const gid = hojaOrigen.getSheetId(); <br>
+<br>
+    // Recorrer las filas del rango<br>
+    for (let i = 0; i < datos.length; i++) {<br>
+      const valorCeldaA = datos[i][INDICE_COLUMNA_A]; <br>
+      const valorCeldaK = datos[i][INDICE_COLUMNA_K]; // 👈 Capturamos el valor de K<br>
+      <br>
+      const valorCeldaString = String(valorCeldaA).trim();<br>
+      const filaActual = i + 1;<br>
+      <br>
+      const esNovedadRoja = valorCeldaK && String(valorCeldaK).toLowerCase().includes("novedad");<br>
+<br>
+      if (esNovedadRoja) {<br>
+        <br>
+        if (!valorCeldaString || valoresExistentes.has(valorCeldaString)) {<br>
+           continue; <br>
+        }<br>
+        <br>
+        valoresExistentes.add(valorCeldaString); <br>
+<br>
+        // --- PREPARACIÓN DE DATOS PARA ESCRITURA POR LOTES ---<br>
+        <br>
+        // Columna D: Nombre completo<br>
+        const valorD = nombreCompleto; <br>
+        <br>
+        // Columna E: Contenido de K (¡NUEVO!)<br>
+        const valorE = valorCeldaK; <br>
+        <br>
+        // Columna F: Contenido de A<br>
+        const valorF = valorCeldaA; <br>
+        <br>
+        // Columna G: Hipervínculo<br>
+        const referenciaCelda = `A${filaActual}`;<br>
+        const etiquetaHipervinculo = `Ir a ${nombreHoja} (${referenciaCelda})`;<br>
+        const urlHipervinculo = `${urlBase}#gid=${gid}&range=${referenciaCelda}`;<br>
+        const formulaHipervinculo = `=HYPERLINK("${urlHipervinculo}"; "${etiquetaHipervinculo}")`; <br>
+        <br>
+        // Acumular [D, E (valor K), F, G]<br>
+        datosParaEscribir.push([<br>
+          valorD,             // Columna D<br>
+          valorE,             // Columna E (¡Ahora lleva el valor de K!)<br>
+          valorF,             // Columna F<br>
+          formulaHipervinculo // Columna G<br>
+        ]);<br>
+        <br>
+        filasRegistradas++; <br>
+      }<br>
+    }<br>
+  }<br>
+  <br>
+  // 2. ESCRITURA FINAL POR LOTES <br>
+  if (datosParaEscribir.length > 0) {<br>
+    const columnaInicio = 4; // Columna D<br>
+    const numFilas = datosParaEscribir.length;<br>
+    const numColumnas = 4; // D, E, F, G<br>
+    <br>
+    hojaDestino.getRange(filaInicioEscritura, columnaInicio, numFilas, numColumnas).setValues(datosParaEscribir);<br>
+  }<br>
+  <br>
+  if (filasRegistradas > 0) {<br>
+    ui.alert("Proceso Completado", `¡Éxito! Se han encontrado y registrado ${filasRegistradas} nuevas novedades en la hoja "${NOMBRE_HOJA_DESTINO}".`, ui.ButtonSet.OK);<br>
+  } else {<br>
+    ui.alert("Proceso Completado", `No se encontraron nuevas celdas que cumplan la condición ("novedad" en Columna K).`, ui.ButtonSet.OK);<br>
+  }<br>
+}
+                    </div>
+                </div>
+
+                <!-- Explicación del Código Base (Inicialmente Oculto) -->
+                <div id="base-code-explanation" class="code-explanation" style="display: none;">
+                    <h3 style="font-size: 1.3em; color: #BC6C25; margin-bottom: 10px;">Explicación Detallada del Apps Script del Panel de Coordinación</h3>
+                    
+                    <p style="font-weight: bold; margin-bottom: 5px; color: #606C38;">Función onOpen()</p>
+                    <ul style="list-style: square; padding-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Propósito:</strong> Crea el menú principal <strong>"🧭 Panel de Coordinación"</strong> que aparece en la barra de la hoja de cálculo, organizando las cuatro funciones de automatización.</li>
+                    </ul>
+
+                    <p style="font-weight: bold; margin-bottom: 5px; color: #606C38;">1️⃣ traerValoresDesdePlantilla (Paso 1)</p>
+                    <ul style="list-style: square; padding-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Acción:</strong> Conecta con una hoja de cálculo remota (`URL_PLANTILLA`).</li>
+                        <li><strong>Lógica:</strong> Busca coincidencias entre los códigos BIOC de la hoja local <strong>"CORDENADAS"</strong> (Columna A) y los códigos BIOC en la hoja remota <strong>"PLANTILLA"</strong>.</li>
+                        <li><strong>Resultado:</strong> Si encuentra una coincidencia, trae un valor específico de la hoja remota (que contiene el enlace de ubicación) y lo pega en la Columna **B** de la hoja **"CORDENADAS"**.</li>
+                    </ul>
+
+                    <p style="font-weight: bold; margin-bottom: 5px; color: #606C38;">2️⃣ extraerCoordenadasDesdeEnlaces (Paso 2)</p>
+                    <ul style="list-style: square; padding-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Acción:</strong> Procesa los enlaces de Google Maps que se acaban de pegar en la Columna B de **"CORDENADAS"**.</li>
+                        <li><strong>Lógica:</strong> Utiliza una expresión regular (`regex`) para analizar cada URL y extraer la latitud y longitud.</li>
+                        <li><strong>Resultado:</strong> Escribe la coordenada en formato Latitud,Longitud (ej: `-12.3456,78.9012`) en la Columna **C** de la hoja **"CORDENADAS"**.</li>
+                    </ul>
+                    
+                    <p style="font-weight: bold; margin-bottom: 5px; color: #606C38;">3️⃣ generarEnlacesGoogleMaps (Paso 3)</p>
+                    <ul style="list-style: square; padding-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Acción:</strong> Crea enlaces de ruta entre visitas en las hojas individuales de los inspectores (JUAN, GERMAN, etc.).</li>
+                        <li><strong>Lógica:</strong> Recorre las hojas objetivo y verifica si la fila actual tiene el color de fondo específico (`#fff0db`, un color de énfasis en tu seguimiento). Si es así, toma la coordenada de la visita anterior y la actual para construir un enlace de Google Maps con la ruta (`/dir/`).</li>
+                        <li><strong>Resultado:</strong> Inserta una fórmula **`=HYPERLINK(...)`** en la Columna **H** para que el usuario pueda hacer clic y ver el tiempo de traslado.</li>
+                    </ul>
+
+                    <p style="font-weight: bold; margin-bottom: 5px; color: #606C38;">4️⃣ procesarNovedades (Paso 4)</p>
+                    <ul style="list-style: square; padding-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Acción:</strong> Automatiza la recopilación de resultados de la auditoría de seguimiento.</li>
+                        <li><strong>Lógica:</strong> Itera sobre las hojas de origen (`FRANQUI`, `JUAN`, `GERMAN`) y busca filas donde el valor en la **Columna K (Observación)** contenga la palabra clave **"novedad"**.</li>
+                        <li><strong>Mecanismo de Control:</strong> Evita duplicados verificando si el BIOC ya fue registrado en la hoja de destino **"NOVEDADES"**.</li>
+                        <li><strong>Resultado:</strong> Escribe los datos de la novedad (Inspector, contenido de K, BIOC) en las Columnas **D, E, F, G** de la hoja **"NOVEDADES"**, incluyendo un hipervínculo directo a la celda de origen en la hoja del inspector.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+    <footer class="footer">
+        Documento realizado por <strong>ALEJANDRA MOLINA 2025</strong> para <strong>RECAUDO Y CARTERA BIOAGRICOLA</strong>.
+    </footer>
+
+    <script>
+        /**
+         * Alterna la visibilidad del contenido de una sección (acordeón).
+         * También rota la flecha e implementa el comportamiento de acordeón
+         * (solo una sección abierta a la vez).
+         * @param {string} sectionId - El ID de la sección principal (e.g., 'fase1').
+         */
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            const arrow = section.querySelector('.toggle-arrow');
+            
+            const isVisible = content.style.display === 'block';
+
+            // 1. Cerrar todas las demás secciones
+            document.querySelectorAll('.section').forEach(sec => {
+                const otherContent = sec.querySelector('.section-content');
+                const otherArrow = sec.querySelector('.toggle-arrow');
+                if (sec.id !== sectionId && otherContent.style.display === 'block') {
+                    otherContent.style.display = 'none';
+                    otherArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // 2. Abrir/Cerrar la sección seleccionada
+            if (isVisible) {
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        /**
+         * Alterna la visibilidad del bloque de código o explicación.
+         * @param {string} blockId - El ID del bloque a mostrar/ocultar (e.g., 'apps-code-block').
+         */
+        function toggleCode(blockId) {
+            const block = document.getElementById(blockId);
+            if (block.style.display === 'none' || block.style.display === '') {
+                block.style.display = 'block';
+            } else {
+                block.style.display = 'none';
+            }
+        }
+
+        // Inicializar la flecha de la primera sección para que apunte hacia abajo (ya está abierta por defecto en el HTML)
+        document.addEventListener('DOMContentLoaded', () => {
+             const fase1 = document.getElementById('fase1');
+             const content = fase1.querySelector('.section-content');
+             const arrow = fase1.querySelector('.toggle-arrow');
+             // Aseguramos que la Fase 1 esté abierta por defecto al cargar
+             content.style.display = 'block';
+             arrow.style.transform = 'rotate(180deg)';
+        });
+    </script>
+</body>
+</html>
